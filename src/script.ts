@@ -11,7 +11,7 @@ let userList = [];
 /*--- UTILITY FUNCTIONS ---*/
 
 // Format number value into readble monetary value
-function formatMoney(money): string {
+function formatMoney(money: number): string {
     return "$" + money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');  
 }
 
@@ -49,18 +49,18 @@ async function getRandomUser() {
 
     const user = res.results[0];
 
-    const newUser: {name: string, money: number} = {
+    const newUser: {name: string, money: number } = {
         name: `${user.name.first} ${user.name.last}`,
-        money: Math.floor(Math.random() * 10000000)
+        money: Math.floor(Math.random() * 10000000) 
     }
 
     addData(newUser);
 }
 
-function doubleMoney(): any {
-    userList = userList.map((user: any): object[] => {
+function doubleMoney(): void {
+    userList = userList.map((user: any): {name: string, money: string} => {
         return { ...user, money: user.money * 2 }
-    });
+    }); 
     updateDOM();
 }
 
